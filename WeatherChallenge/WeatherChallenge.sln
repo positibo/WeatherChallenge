@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherChallenge", "WeatherChallenge\WeatherChallenge.csproj", "{DBAB7D4A-CB14-4305-98C3-0A8BDAC64964}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherChallenge.ConsoleApp", "WeatherChallenge.ConsoleApp\WeatherChallenge.ConsoleApp.csproj", "{ECDED425-2959-43E3-8906-8CE4ED955F46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBAB7D4A-CB14-4305-98C3-0A8BDAC64964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAB7D4A-CB14-4305-98C3-0A8BDAC64964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAB7D4A-CB14-4305-98C3-0A8BDAC64964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAB7D4A-CB14-4305-98C3-0A8BDAC64964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECDED425-2959-43E3-8906-8CE4ED955F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECDED425-2959-43E3-8906-8CE4ED955F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECDED425-2959-43E3-8906-8CE4ED955F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECDED425-2959-43E3-8906-8CE4ED955F46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B42CCDAE-E30A-4472-A691-98C63FB3C97C}
+	EndGlobalSection
+EndGlobal
