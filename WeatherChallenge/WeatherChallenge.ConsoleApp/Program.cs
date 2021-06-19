@@ -29,12 +29,14 @@ namespace WeatherChallenge.ConsoleApp
         static async Task CanUserGoOutside(string zipCode)
         {
             bool isRaining = await provider.IsItRaining(zipCode);
+            Console.WriteLine("Should I go outside?");
             Console.WriteLine(isRaining ? "No" : "Yes");
         }
 
         static async Task CanUserWearSunscreen(string zipCode)
         {
             bool isHighUV = await provider.IsHighUV(zipCode);
+            Console.WriteLine("Should I wear sunscreen?");
             Console.WriteLine(isHighUV ? "Yes" : "No");
         }
 
@@ -42,8 +44,11 @@ namespace WeatherChallenge.ConsoleApp
         {
             bool canUserFlyKite = false;
             if (!await provider.IsItRaining(zipCode) && await provider.IsItWindy(zipCode))
+            {
                 canUserFlyKite = true;
+            }
 
+            Console.WriteLine("Can I fly my kite?");
             Console.WriteLine(canUserFlyKite ? "Yes" : "No");
         }
     }
