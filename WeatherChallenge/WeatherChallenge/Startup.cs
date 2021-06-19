@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using WeatherChallenge.Infrastructure;
+using WeatherChallenge.Providers.WeatherStack;
 
 namespace WeatherChallenge
 {
@@ -28,7 +28,7 @@ namespace WeatherChallenge
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherChallenge", Version = "v1" });
             });
             services.AddMediatR(typeof(Startup));
-            services.AddScoped<IWeather, Weather>();
+            services.AddScoped<IWeatherStackProvider, WeatherStackProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

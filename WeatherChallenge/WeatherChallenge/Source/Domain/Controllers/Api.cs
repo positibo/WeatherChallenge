@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite;
-using WeatherChallenge.Source.Domain.UseCases.CanUserShouldGoOutside;
-using WeatherChallenge.Source.Domain.UseCases.CanUserShouldWearSunscreen;
+using WeatherChallenge.Source.Domain.UseCases.CanUserGoOutside;
+using WeatherChallenge.Source.Domain.UseCases.CanUserWearSunscreen;
 
 namespace WeatherChallenge.Source.Domain.Controllers
 {
@@ -23,18 +23,18 @@ namespace WeatherChallenge.Source.Domain.Controllers
             return Ok(result);
         }
 
-        [HttpGet("CanUserShouldGoOutside")]
-        public async Task<ActionResult> CanUserShouldGoOutside(string zipCode)
+        [HttpGet("CanUserGoOutside")]
+        public async Task<ActionResult> CanUserGoOutside(string zipCode)
         {
-            var result = await mediator.Send(new CanUserShouldGoOutsideCommand(zipCode));
+            var result = await mediator.Send(new CanUserGoOutsideCommand(zipCode));
 
             return Ok(result);
         }
 
-        [HttpGet("CanUserShouldWearSunscreen")]
-        public async Task<ActionResult> CanUserShouldWearSunscreen(string zipCode)
+        [HttpGet("CanUserWearSunscreen")]
+        public async Task<ActionResult> CanUserWearSunscreen(string zipCode)
         {
-            var result = await mediator.Send(new CanUserShouldWearSunscreenCommand(zipCode));
+            var result = await mediator.Send(new CanUserWearSunscreenCommand(zipCode));
 
             return Ok(result);
         }

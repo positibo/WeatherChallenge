@@ -1,9 +1,7 @@
 ﻿using MediatR;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WeatherChallenge.Infrastructure;
+using WeatherChallenge.Providers.WeatherStack;
 
 namespace WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite
 {
@@ -15,15 +13,15 @@ namespace WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite
 
         public class CanUserFlyKiteCommandHandler : IRequestHandler<CanUserFlyKiteCommand, bool>
         {
-            private IWeather weather;
+            private IWeatherStackProvider weatherStackProvider;
 
-            public CanUserFlyKiteCommandHandler(IWeather weather) => this.weather = weather;
+            public CanUserFlyKiteCommandHandler(IWeatherStackProvider weatherStackProvider) => this.weatherStackProvider = weatherStackProvider;
 
             public async Task<bool> Handle(CanUserFlyKiteCommand request, CancellationToken cancellationToken)
             {
 
                 //  Yes if not raining and wind speed over 15
-                if (!await weather.IsItRaining(request.zipCode) && await weather.IsItWindy(request.zipCode))
+                if (!await weatherStackProvider.IsItRaining(request.zipCode) && await weatherStackProvider.IsItWindy(request.zipCode))
                     return true;
 
                 return false;
