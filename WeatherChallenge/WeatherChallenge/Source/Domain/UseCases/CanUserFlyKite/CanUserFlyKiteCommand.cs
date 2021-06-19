@@ -3,8 +3,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WeatherChallenge.Source.Domain.BusinessRules;
-using WeatherChallenge.Source.Domain.Interfaces;
+using WeatherChallenge.Infrastructure;
 
 namespace WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite
 {
@@ -16,19 +15,16 @@ namespace WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite
 
         public class CanUserFlyKiteCommandHandler : IRequestHandler<CanUserFlyKiteCommand, bool>
         {
-            private IWeatherStackDataManagement dataManagement;
+            private IWeather dataManagement;
 
-            public CanUserFlyKiteCommandHandler(IWeatherStackDataManagement dataManagement) => this.dataManagement = dataManagement;
+            public CanUserFlyKiteCommandHandler(IWeather dataManagement) => this.dataManagement = dataManagement;
 
             public async Task<bool> Handle(CanUserFlyKiteCommand request, CancellationToken cancellationToken)
             {
 
-                if (string.IsNullOrEmpty(request.zipCode))
-                    throw new InvalidZipCodeException();
-
                 var weatherInfo = await dataManagement.GetWeatherInfo(request.zipCode);
                 if (weatherInfo.Current == null)
-                    throw new NotFoundException();
+                    throw new NullReferenceException();
 
                 //  Yes if not raining and wind speed over 15
                 if (!weatherInfo.Current.WeatherDescriptions.Any(o => o.Contains("rain")) && weatherInfo.Current.WindSpeed > 15)

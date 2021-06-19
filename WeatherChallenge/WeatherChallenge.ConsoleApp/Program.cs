@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using WeatherChallenge.Source.Infrastructure.WeatherStackDataHandling;
+using WeatherChallenge.Infrastructure;
 
 namespace WeatherChallenge.ConsoleApp
 {
@@ -15,7 +15,7 @@ namespace WeatherChallenge.ConsoleApp
             // Ask the user to input zip code.
             Console.WriteLine("Type a zip code, and then press Enter");
             var zipCode = Console.ReadLine();
-            var dataManagement = new WeatherStackDataManagement();
+            var dataManagement = new Weather();
             var weatherInfo = await dataManagement.GetWeatherInfo(zipCode);
 
             //  Yes if it’s not raining, no if it’s raining

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WeatherChallenge\WeatherChallenge.csproj" />
+    <ProjectReference Include="..\WeatherChallenge.Infrastructure\WeatherChallenge.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
