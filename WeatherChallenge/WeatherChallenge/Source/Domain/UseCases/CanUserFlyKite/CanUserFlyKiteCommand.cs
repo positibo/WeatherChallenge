@@ -15,19 +15,15 @@ namespace WeatherChallenge.Source.Domain.UseCases.CanUserFlyKite
 
         public class CanUserFlyKiteCommandHandler : IRequestHandler<CanUserFlyKiteCommand, bool>
         {
-            private IWeather dataManagement;
+            private IWeather weather;
 
-            public CanUserFlyKiteCommandHandler(IWeather dataManagement) => this.dataManagement = dataManagement;
+            public CanUserFlyKiteCommandHandler(IWeather weather) => this.weather = weather;
 
             public async Task<bool> Handle(CanUserFlyKiteCommand request, CancellationToken cancellationToken)
             {
 
-                var weatherInfo = await dataManagement.GetWeatherInfo(request.zipCode);
-                if (weatherInfo.Current == null)
-                    throw new NullReferenceException();
-
                 //  Yes if not raining and wind speed over 15
-                if (!weatherInfo.Current.WeatherDescriptions.Any(o => o.Contains("rain")) && weatherInfo.Current.WindSpeed > 15)
+                if (!await weather.IsItRaining(request.zipCode) && await weather.IsItWindy(request.zipCode))
                     return true;
 
                 return false;

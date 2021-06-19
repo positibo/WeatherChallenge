@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using WeatherChallenge.Source.Domain.BusinessRules;
 using WeatherChallenge.Source.Domain.Interfaces;
 using WeatherChallenge.Source.Domain.Models;
-
+ 
 namespace WeatherChallenge.Source.Infrastructure.WeatherStackDataHandling
 {
     public class WeatherStackDataManagement : IWeatherStackDataManagement

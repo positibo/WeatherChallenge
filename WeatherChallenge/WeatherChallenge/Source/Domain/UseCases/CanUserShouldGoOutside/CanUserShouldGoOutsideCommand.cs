@@ -14,21 +14,15 @@ namespace WeatherChallenge.Source.Domain.UseCases.CanUserShouldGoOutside
 
         public class CanUserShouldGoOutsideCommandHandler : IRequestHandler<CanUserShouldGoOutsideCommand, bool>
         {
-            private IWeather dataManagement;
+            private IWeather weather;
 
-            public CanUserShouldGoOutsideCommandHandler(IWeather dataManagement) => this.dataManagement = dataManagement;
+            public CanUserShouldGoOutsideCommandHandler(IWeather weather) => this.weather = weather;
 
             public async Task<bool> Handle(CanUserShouldGoOutsideCommand request, CancellationToken cancellationToken)
             {
 
-                
-
-                var weatherInfo = await dataManagement.GetWeatherInfo(request.zipCode);
                 //  Yes if it’s not raining, no if it’s raining
-                if (!weatherInfo.Current.WeatherDescriptions.Any(o => o.Contains("rain")))
-                    return true;
-
-                return false;
+                return await weather.IsItRaining(request.zipCode);
 
             }
         }

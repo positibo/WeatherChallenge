@@ -13,19 +13,15 @@ namespace WeatherChallenge.Source.Domain.UseCases.CanUserShouldWearSunscreen
 
         public class CanUserShouldWearSunscreenCommandHandler : IRequestHandler<CanUserShouldWearSunscreenCommand, bool>
         {
-            private IWeather dataManagement;
+            private IWeather weather;
 
-            public CanUserShouldWearSunscreenCommandHandler(IWeather dataManagement) => this.dataManagement = dataManagement;
+            public CanUserShouldWearSunscreenCommandHandler(IWeather weather) => this.weather = weather;
 
             public async Task<bool> Handle(CanUserShouldWearSunscreenCommand request, CancellationToken cancellationToken)
             {
 
-                var weatherInfo = await dataManagement.GetWeatherInfo(request.zipCode);
                 //  Is UV index above 3 then YES
-                if (weatherInfo.Current.UvIndex > 3)
-                    return true;
-
-                return false;
+                return await weather.IsHighUV(request.zipCode);
 
             }
         }

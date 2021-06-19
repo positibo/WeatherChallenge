@@ -15,22 +15,18 @@ namespace WeatherChallenge.ConsoleApp
             // Ask the user to input zip code.
             Console.WriteLine("Type a zip code, and then press Enter");
             var zipCode = Console.ReadLine();
-            var dataManagement = new Weather();
-            var weatherInfo = await dataManagement.GetWeatherInfo(zipCode);
+            var weather = new Weather();
 
             //  Yes if it’s not raining, no if it’s raining
-            var canUserShouldGoOutside = false;
-            if (!weatherInfo.Current.WeatherDescriptions.Any(o => o.Contains("rain")))
-                canUserShouldGoOutside = true;
+            var isRaining = await weather.IsItRaining(zipCode);
+            var canUserShouldGoOutside = !isRaining;
 
             //  Is UV index above 3 then YES
-            var canUserShouldWearSunscreen = false;
-            if (weatherInfo.Current.UvIndex > 3)
-                canUserShouldWearSunscreen = true;
+            var canUserShouldWearSunscreen = await weather.IsHighUV(zipCode);
 
             //  Yes if not raining and wind speed over 15
             var canUserFlyKite = false;
-            if (!weatherInfo.Current.WeatherDescriptions.Any(o => o.Contains("rain")) && weatherInfo.Current.WindSpeed > 15)
+            if (!isRaining && await weather.IsItWindy(zipCode))
                 canUserFlyKite = true;
 
             Console.WriteLine("Should I go outside?");
